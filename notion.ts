@@ -1,7 +1,8 @@
 import { Client} from '@notionhq/client'
 
+const auth = process.env.NOTION_AUTH;
 const notion = new Client({
-    auth: 'secret_NScBJJvTyZmub9pnuX78tkyJErO8RH142EjPplD7bCG'
+    auth: auth
 });
 export const useNotion = () => {
     return notion;
