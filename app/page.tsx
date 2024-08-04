@@ -21,13 +21,22 @@ export default async function Home() {
   await write(sorted);
   // read()
   const thisWeek = await getThisWeekCount();
+
+  const onClickCopy = () => {
+    
+  }
   return (
     <div className="flex flex-col p-5">
       <div>
-        <span className="text-sm">이번주: {thisWeek}</span>
+        <span className="text-sm text-gray-50">이번 주 생성 횟수: {thisWeek}</span>
       </div>
-      <div className="flex gap-5 justify-between mt-20 border-r-cyan-400">
-        {nums}
+      <div className="p-3 flex flex-col w-full overflow-hidden gap-2 mt-20 border-red-50 border-solid border-4 rounded-md ">
+        <div className="flex justify-end">
+          <span className="text-gray-50 text-xs" onClick={onClickCopy}>복사</span>
+        </div>
+        <div className="flex w-full gap-5 justify-between">
+          {nums}
+        </div>
       </div>
     </div>
   );
