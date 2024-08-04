@@ -1,5 +1,6 @@
 import { getNumber } from "@/util/util";
-import { read, getThisWeekCount, write } from "./api/route";
+import { read, getThisWeekCount, write } from "@/notion/api";
+import CopyButton from "./CopyButton";
 export default async function Home() {
   const arr = new Array<number>();
   
@@ -22,9 +23,6 @@ export default async function Home() {
   // read()
   const thisWeek = await getThisWeekCount();
 
-  const onClickCopy = () => {
-    
-  }
   return (
     <div className="flex flex-col p-5">
       <div>
@@ -32,7 +30,7 @@ export default async function Home() {
       </div>
       <div className="p-3 flex flex-col w-full overflow-hidden gap-2 mt-20 border-red-50 border-solid border-4 rounded-md ">
         <div className="flex justify-end">
-          <span className="text-gray-50 text-xs" onClick={onClickCopy}>복사</span>
+          <CopyButton></CopyButton>
         </div>
         <div className="flex w-full gap-5 justify-between">
           {nums}
