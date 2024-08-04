@@ -10,10 +10,11 @@ export default function Home() {
     }
     continue;
   }
-  console.log(arr)
+  const sorted = arr.sort((a, b) => a - b);
+  console.log(sorted)
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {arr}
+      {sorted}
     </main>
   );
 }
