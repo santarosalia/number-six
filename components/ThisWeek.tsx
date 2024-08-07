@@ -15,7 +15,20 @@ const ThisWeek = () => {
         }
         thisWeek();
     }, [sorted]);
-
+    if (thisWeekCount === 0) {
+        return (
+            <span className="text-sm text-gray-50 flex items-center gap-2">
+                <span>이번 주 생성 횟수:</span>
+                <div style={{
+                        height: '1px',
+                        width: '10px',
+                        border: '1px solid white',
+                        animation: 'spin 1s ease infinite'
+                    }}
+                    ></div>
+            </span>
+        )
+    }
     return (
         <span className="text-sm text-gray-50">이번 주 생성 횟수: {thisWeekCount}</span>
     )
