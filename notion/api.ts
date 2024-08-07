@@ -38,7 +38,7 @@ export const read = async () => {
     });
     // console.log(result.results[0].properties.num.multi_select)
 }
-export const getThisWeekCount = async () => {
+export const getThisWeekCount = async (cursor: string | null, count: number) => {
     const notion = getNotion();
     const result = await notion.databases.query({
         database_id: 'a3b896c6cad44549b5fe1d218d997d87',
@@ -47,9 +47,16 @@ export const getThisWeekCount = async () => {
             created_time: {
                 this_week: {}
             }
-        }
+        },
+        start_cursor: cursor ?? undefined
     });
-    return result.results.length;
+    count += result.results.length;
+    if (result.has_more) {
+        count += await getThisWeekCount(result.next_cursor, count);
+        return count;
+    } else {
+        return count;
+    }
 }
 // export const getGameResult = async () => {
 //     fetch('https://dhlottery.co.kr/gameResult.do?method=byWin').then(async result => {
