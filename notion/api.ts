@@ -52,7 +52,7 @@ export const getThisWeekCount = async (cursor: string | null, count: number) => 
     });
     count += result.results.length;
     if (result.has_more) {
-        count = await getThisWeekCount(result.next_cursor, count);
+        count += await getThisWeekCount(result.next_cursor, count);
     } 
     return count;
     
