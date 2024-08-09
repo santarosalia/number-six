@@ -12,9 +12,10 @@ const ThisWeek = () => {
             });
             const result = await res.json();
             setThisWeekCount(result);
+            console.log(result)
         }
         thisWeek();
-    }, [sorted]);
+    }, []);
     if (thisWeekCount === 0) {
         return (
             <span className="text-sm text-gray-50 flex items-center gap-2">

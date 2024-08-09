@@ -71,9 +71,11 @@ export const getThisWeekCount = async (cursor: string | null, count: number): Pr
         start_cursor: cursor ?? undefined
     });
     count += result.results.length;
+    console.log(count)
     if (result.has_more) {
         return await getThisWeekCount(result.next_cursor, count);
-    } 
+    }
+    
     return count;
     
 }
