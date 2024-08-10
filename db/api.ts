@@ -24,6 +24,9 @@ export const getThisWeekCount = async () => {
     startOfWeek.setMinutes(0);
     startOfWeek.setSeconds(0);
     const endOfWeek = new Date(startOfWeek);
+    console.log(startOfWeek)
+    console.log(endOfWeek)
+    
     endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
     const count = await coll.countDocuments({
         created: {
