@@ -1,8 +1,14 @@
-import { write } from "@/notion/api";
+// import { write } from "@/notion/api";
+import {write} from '@/db/api';
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
     const numbers = await req.json() as number[];
-    await write(numbers);
+    const date = new Date().toISOString();
+    const item = {
+        date: date,
+        numbers: numbers
+    }
+    await write(item);
     return new NextResponse();
 }
