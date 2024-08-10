@@ -14,8 +14,9 @@ export const getThisWeekCount = async () => {
     const conn = await client.connect();
     const db = conn.db('Devmon');
     const coll = db.collection('number');
-
-    const today = new Date();
+    const serverTime = new Date();
+    const koreanTimeString = serverTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' });
+    const today = new Date(koreanTimeString);
     const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -5 : 1)); // Monday
