@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
     const numbers = await req.json() as number[];
-    const date = new Date().toISOString();
+    const date = new Date();
     const item = {
-        date: date,
+        created: date,
         numbers: numbers
     }
     await write(item);
