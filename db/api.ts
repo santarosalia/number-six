@@ -11,9 +11,7 @@ export const write = async (item: {
 
 export const getThisWeekCount = async () => {
   
-    const serverTime = new Date();
-    const koreanTimeString = serverTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' });
-    const today = new Date(koreanTimeString);
+    const today = new Date();
     const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -5 : 1)); // Monday
@@ -23,7 +21,6 @@ export const getThisWeekCount = async () => {
     const endOfWeek = new Date(startOfWeek);
     
     endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
-
     const count = await prisma.number.count({
         where: {
             created: {
