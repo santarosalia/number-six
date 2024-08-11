@@ -1,19 +1,16 @@
-import client from "./client"
+import prisma from "@/lib/prisma";
 
 export const write = async (item: {
     created: Date,
     numbers: number[]
 }) => {
-    const conn = await client.connect();
-    const db = conn.db('Devmon');
-    const number = db.collection('number');
-    number.insertOne(item);
+    await prisma.number.create({
+        data: item
+    });
 }
 
 export const getThisWeekCount = async () => {
-    const conn = await client.connect();
-    const db = conn.db('Devmon');
-    const coll = db.collection('number');
+  
     const serverTime = new Date();
     const koreanTimeString = serverTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' });
     const today = new Date(koreanTimeString);
@@ -26,11 +23,15 @@ export const getThisWeekCount = async () => {
     const endOfWeek = new Date(startOfWeek);
     
     endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
-    const count = await coll.countDocuments({
-        // created: {
-        //     $gte: startOfWeek,
-        //     $lt: endOfWeek
-        // }
-    });
+
+    const count = await prisma.number.count({
+        where: {
+            created: {
+                gte: startOfWeek,
+                lt: endOfWeek
+            }
+        }
+    })
+    
     return count;
 }

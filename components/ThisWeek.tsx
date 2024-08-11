@@ -9,7 +9,6 @@ const ThisWeek = () => {
         const thisWeek = async () => {
             const res = await fetch('/api/count', {
                 method: 'GET',
-                cache: 'no-cache'
             });
             const result = await res.json();
             setThisWeekCount(result);
