@@ -8,11 +8,11 @@ const ThisWeek = () => {
     useEffect(() => {
         const thisWeek = async () => {
             const res = await fetch('/api/count', {
-                method: 'GET'
+                method: 'GET',
+                cache: 'no-cache'
             });
             const result = await res.json();
             setThisWeekCount(result);
-            console.log(result)
         }
         thisWeek();
     }, []);
