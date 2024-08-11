@@ -11,7 +11,7 @@ const ThisWeek = () => {
                 method: 'GET',
             });
             const result = await res.json();
-            setThisWeekCount(result);
+            setThisWeekCount(result.count);
         }
         thisWeek();
     }, []);
