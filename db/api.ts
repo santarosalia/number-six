@@ -11,7 +11,7 @@ export const write = async (item: {
 
 export const getThisWeekCount = async () => {
   
-    const today = new Date();
+    const today = new Date(new Date() + 9 * 60 * 60 * 1000);
     const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -5 : 1)); // Monday
